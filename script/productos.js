@@ -97,12 +97,8 @@ let productosSeleccionados;
 
 const productosEnCarritoLS = JSON.parse(localStorage.getItem("productosSeleccionados"));
 
-if (productosEnCarritoLS) {
-    productosSeleccionados = productosEnCarritoLS;
-    actualizarNumerito()
-} else {
-    productosSeleccionados = [];
-}
+productosSeleccionados = productosEnCarritoLS ? productosEnCarritoLS : [];
+productosEnCarritoLS && actualizarNumerito();
 
 function agregarAlCarrito(productoId) {
     const productoExistente = productosSeleccionados.find(producto => producto.id === productoId);
