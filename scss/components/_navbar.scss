@@ -1,0 +1,87 @@
+.navbar {
+    background-color: $color-negro;
+
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .navbar-brand {
+        .logo {
+            max-width: 80px;
+            position: relative;
+            animation: bounce 1s;
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-5px);
+                }
+            }
+
+            &:hover {
+                animation: pulse 2s infinite;
+
+                @keyframes pulse {
+
+                    0%,
+                    100% {
+                        transform: scale(1);
+                    }
+
+                    50% {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+
+    .navbar-toggler {
+        .navbar-toggler-icon {
+            /* Cambiar el color del icono del menú hamburguesa a blanco */
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    .navbar-collapse {
+        order: 1; // Cambia el orden de la lista del menú
+    }
+
+    .nav-item {
+        font-size: 22px;
+
+        a {
+            text-decoration: none;
+            color: $color-blanco;
+            transition: 0.5s;
+
+            &:hover {
+                color: $color-blanco;
+                background-color: rgb(0, 84, 133);
+                border-radius: 8px;
+            }
+        }
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+
+        .logo {
+            /* Cambiar el color de la imagen del logo a blanco */
+            filter: brightness(0) invert(1);
+        }
+
+        h1 {
+            font-size: 20px;
+            color: white;
+        }
+    }
+}

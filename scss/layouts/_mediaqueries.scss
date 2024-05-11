@@ -1,0 +1,11 @@
+/*Media Mobile de 320px a 768px*/
+@media screen and (max-width: 768px) {
+    .wrapper-productos-principal {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    .productos {
+        width: auto;
+    }
+}
