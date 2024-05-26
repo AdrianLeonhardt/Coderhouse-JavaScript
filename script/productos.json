@@ -1,0 +1,62 @@
+[
+    {
+        "id": "Pantalones1",
+        "titulo": "Pantalon", 
+        "descripcion": "Pantalon de jean azul",
+        "precio": "1000",
+        "imagen": "../assets/images/pantalones/01.jpg",
+        "categoria": { 
+            "nombre": "Pantalones", "id": "pantalones" 
+            }
+    },
+    {
+        "id": "Pantalones2",
+        "titulo": "Pantalon", 
+        "descripcion": "Pantalon de jean negro",
+        "precio": "2000",
+        "imagen": "../assets/images/pantalones/02.jpg",
+        "categoria": { 
+            "nombre": "Pantalones", "id": "pantalones" 
+            }
+    },
+    {
+        "id": "Remeras1",
+        "titulo": "Remera", 
+        "descripcion": "Remera de algodón blanca",
+        "precio": "1500",
+        "imagen": "../assets/images/remeras/01.jpg",
+        "categoria": { 
+            "nombre": "Remeras", "id": "remeras" 
+            }
+    },
+    {
+        "id": "Remeras2",
+        "titulo": "Remera", 
+        "descripcion": "Remera de algodón combinada",
+        "precio": "1800",
+        "imagen": "../assets/images/pantalones/02.jpg",
+        "categoria": { 
+            "nombre": "Remeras", "id": "remeras" 
+            }
+    },
+    {
+        "id": "Camperas1",
+        "titulo": "Campera", 
+        "descripcion": "Campera de cuero marrón",
+        "precio": "3000",
+        "imagen": "../assets/images/camperas/01.jpg",
+        "categoria": { 
+            "nombre": "Camperas", "id": "camperas" 
+            }
+    },
+    {
+        "id": "Camperas2",
+        "titulo": "Campera", 
+        "descripcion": "Campera de cuero negra",
+        "precio": "3500",
+        "imagen": "../assets/images/camperas/02.jpg",
+        "categoria": { 
+            "nombre": "Camperas", "id": "camperas" 
+            }
+    }
+]

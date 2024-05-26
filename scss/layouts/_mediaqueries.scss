@@ -1,5 +1,9 @@
 /*Media Mobile de 320px a 768px*/
 @media screen and (max-width: 768px) {
+    .shortcut-shop {
+        flex-direction: column;
+      }
+
     .wrapper-productos-principal {
         display: flex;
         flex-direction: column;

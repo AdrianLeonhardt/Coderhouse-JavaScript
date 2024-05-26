@@ -4,33 +4,15 @@ const botonesMenu = document.querySelectorAll('.boton-menu');
 const numerito = document.querySelector("#numerito-carrito");
 const tituloPrincial = document.querySelector("#titulo-principal");
 
-// Clase Producto
-class Producto {
-    constructor(id, titulo, descripcion, precio, imagen, categoria) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.categoria = categoria;
-    }
-}
+// Variable para llamar al array de productos.json
+let producto = [];
 
-// Array de Productos
-const productos = [
-    new Producto("Pantalones1", "Pantalon", "pantalon de jean azul", 1000, "../assets/images/pantalones/01.jpg", { nombre: "Pantalones", id: "pantalones" }),
-    new Producto("Pantalones2", "Pantalon", "pantalon de jean negro", 2000, "../assets/images/pantalones/02.jpg", { nombre: "Pantalones", id: "pantalones" }),
-    new Producto("Remeras1", "Remera", "remera de algodón blanca", 1500, "../assets/images/remeras/01.jpg", { nombre: "Remeras", id: "remeras" }),
-    new Producto("Remeras2", "Remera", "remera de algodón combinada", 1800, "../assets/images/remeras/02.jpg", { nombre: "Remeras", id: "remeras" }),
-    new Producto("Camperas1", "Campera", "campera de cuero marrón", 3000, "../assets/images/camperas/01.jpg", { nombre: "Camperas", id: "camperas" }),
-    new Producto("Camperas2", "Campera", "campera de cuero negra", 3500, "../assets/images/camperas/02.jpg", { nombre: "Camperas", id: "camperas" })
-];
-
-// Función principal para inicializar
-function inicializar() {
-    cargarProductos();
-    agregarEventos();
-}
+fetch("../script/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        inicializar();
+    });
 
 // Función para cargar productos en el contenedor
 function cargarProductos() {
@@ -61,7 +43,6 @@ function limpiarContenedorProductos() {
     contenedorProductos.innerHTML = '';
 }
 
-
 // Función para agregar eventos
 function agregarEventos() {
     botonesMenu.forEach(boton => {
@@ -76,6 +57,23 @@ function agregarEventos() {
         boton.addEventListener('click', () => {
             const productoId = boton.id;
             agregarAlCarrito(productoId);
+
+        // Toastify al agregar un producto
+         Toastify({
+            text: "Producto agregado al carrito",
+            duration: 1000,
+            gravity: "top",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #005485, #000000)",
+                borderRadius: "0.5rem",
+            },
+            offset: {
+                x: '2rem',
+                y: '2rem'
+            },
+        }).showToast();
+
         });
     });
 }
@@ -125,5 +123,8 @@ function actualizarNumerito() {
     }
 }
 
-// Llamada inicial para cargar productos y agregar eventos
-inicializar();
+// Funcion inicializadora para cargar productos y agregar eventos
+function inicializar() {
+    cargarProductos();
+    agregarEventos();
+}

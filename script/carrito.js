@@ -12,7 +12,8 @@ const carritoBotonComprar = document.querySelector("#carrito-boton-comprar");
 // Función para calcular y mostrar el total del carrito
 function mostrarTotalCarrito(productosEnCarrito) {
     const total = productosEnCarrito.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidad), 0);
-    document.getElementById("total-carrito").textContent = `$${total}`;
+    document.getElementById("total-carrito").textContent = `$${total}`
+    return total;
 }
 
 // Función para actualizar el estado del carrito en la interfaz de usuario
@@ -70,6 +71,9 @@ carritoBotonComprar.addEventListener("click", () => {
     carritoBotonVaciar.classList.add("disabled");
     carritoBotonComprar.classList.add("disabled");
     contenedorProductos.classList.add("disabled");
+    
+    // Guardamos el total del carrito antes de vaciarlo
+    const totalCompra = mostrarTotalCarrito(productosEnCarrito);
 
     productosEnCarrito = []; // Vaciar el carrito
     localStorage.setItem("productosSeleccionados", JSON.stringify(productosEnCarrito)); // Guardar carrito vacío en localStorage
@@ -77,13 +81,45 @@ carritoBotonComprar.addEventListener("click", () => {
     if (productosEnCarrito.length === 0) {
         carritoVacio.classList.add("disabled");
     }
+
+    // Mensaje de SweetAlert al comprar
+    Swal.fire({
+        icon: "success",
+        title: "Gracias por tu compra",
+        text: `El total de tu compra es: $${totalCompra}`,
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: {
+            container: "sweet-alert-container"
+        }
+    });
 });
 
 // Vaciar carrito
 carritoBotonVaciar.addEventListener("click", () => {
-    productosEnCarrito = []; // Vaciar el carrito
-    actualizarCarrito(productosEnCarrito); // Actualizar el DOM
-    localStorage.setItem("productosSeleccionados", JSON.stringify(productosEnCarrito)); // Guardar cambios en localStorage
+    Swal.fire({
+        icon: "warning",
+        title: "¿Estás seguro?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, vaciar carrito",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productosEnCarrito = []; // Vaciar el carrito
+            actualizarCarrito(productosEnCarrito); // Actualizar el DOM
+            localStorage.setItem("productosSeleccionados", JSON.stringify(productosEnCarrito)); // Guardar cambios en localStorage
+
+            Swal.fire({
+                icon: "success",
+                title: "Carrito vaciado",
+                text: "Tu carrito ha sido vaciado exitosamente.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
 });
 
 // Agregar producto
@@ -96,6 +132,22 @@ contenedorProductos.addEventListener("click", event => {
         }
         actualizarCarrito(productosEnCarrito);
         localStorage.setItem("productosSeleccionados", JSON.stringify(productosEnCarrito));
+
+        // Toastify al agregar un producto
+         Toastify({
+            text: "Producto agregado al carrito",
+            duration: 1000,
+            gravity: "top",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #005485, #000000)",
+                borderRadius: "0.5rem",
+            },
+            offset: {
+                x: '2rem',
+                y: '2rem'
+            },
+        }).showToast();
     }
 });
 
@@ -106,8 +158,25 @@ contenedorProductos.addEventListener("click", event => {
         const productoEnCarritoIndex = productosEnCarrito.findIndex(producto => producto.id === productId);
         if (productoEnCarritoIndex !== -1) {
             productosEnCarrito[productoEnCarritoIndex].cantidad--;
+
+            // Toastify al eliminar un producto
+            Toastify({
+                text: "Producto eliminado del carrito",
+                duration: 1000,
+                gravity: "top",
+                position: "right",
+                style: {
+                    background: "linear-gradient(to right, #c01515, #000000)",
+                    borderRadius: "0.5rem",
+                },
+                offset: {
+                    x: '2rem',
+                    y: '2rem'
+                },
+            }).showToast();
+
             if (productosEnCarrito[productoEnCarritoIndex].cantidad === 0) {
-                productosEnCarrito.splice(productoEnCarritoIndex, 1);
+                productosEnCarrito.splice(productoEnCarritoIndex, 1);                
             }
         }
         actualizarCarrito(productosEnCarrito);
