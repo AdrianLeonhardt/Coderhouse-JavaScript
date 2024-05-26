@@ -26,6 +26,6 @@ diferentes tipos de ropa.
 - Se utiliza el storage del navegador.
 - Se utilizan funciones, arrays, objetos y métodos de arrays.
 - Se utilizan sugar syntax.
-- Se utilizan sugar Fetch.
+- Se utiliza Fetch.
 - Se utilizan librerias como "SweetAlert2" y "Toastify".
 
