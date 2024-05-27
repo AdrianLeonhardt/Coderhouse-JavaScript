@@ -5,7 +5,7 @@ const numerito = document.querySelector("#numerito-carrito");
 const tituloPrincial = document.querySelector("#titulo-principal");
 
 // Variable para llamar al array de productos.json
-let producto = [];
+let productos = [];
 
 fetch("../productos.json")
     .then(response => response.json())
