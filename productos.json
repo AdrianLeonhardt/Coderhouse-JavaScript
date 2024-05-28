@@ -34,7 +34,7 @@
         "titulo": "Remera", 
         "descripcion": "Remera de algodón combinada",
         "precio": "1800",
-        "imagen": "../assets/images/pantalones/02.jpg",
+        "imagen": "../assets/images/remeras/02.jpg",
         "categoria": { 
             "nombre": "Remeras", "id": "remeras" 
             }
